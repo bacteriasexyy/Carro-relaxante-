@@ -1,0 +1,34 @@
+KART INFINITO - projeto pronto pra virar app Android
+
+CAMINHO A (mais completo, gera o .aab da Play Store)
+1. Instale Node.js e Android Studio no computador.
+2. Dentro desta pasta, rode:
+   npm install
+   npx cap add android
+   npx cap sync
+   npx cap open android
+3. No Android Studio: Build > Generate Signed Bundle / APK > Android App Bundle.
+   Guarde a chave (keystore) em local seguro: sem ela voce nao atualiza o app.
+4. Envie o .aab na Google Play Console.
+
+IMPORTANTE: troque "com.seunome.kartinfinito" em capacitor.config.json
+por um ID so seu (ex: com.joao.kartinfinito) ANTES do passo 2.
+
+CAMINHO B (rapido, sem Android Studio)
+1. Hospede a pasta "www" de graca (Netlify Drop, GitHub Pages ou Cloudflare Pages).
+2. Cole o link em pwabuilder.com e baixe o pacote Android.
+
+TESTE RAPIDO: abra www/index.html no navegador.
+
+
+ANUNCIOS COM RECOMPENSA (so funcionam no app Android, nao no navegador)
+O jogo ja tem o botao "Ver anuncio: +50 moedas". Ele so aparece quando existe
+window.KartAds.showRewarded() (uma funcao que devolve true se o jogador viu o anuncio inteiro).
+1. Crie uma conta em admob.google.com e cadastre o app. Crie um bloco de anuncio "Premiado".
+2. Dentro desta pasta: npm install @capacitor-community/admob  e depois  npx cap sync
+3. Siga o guia do plugin (coloque o ID do app AdMob no AndroidManifest.xml)
+   e crie a funcao window.KartAds num script dentro de www/index.html.
+4. USE SOMENTE ANUNCIOS DE TESTE enquanto desenvolve. Clicar nos seus
+   proprios anuncios reais pode causar o bloqueio da conta AdMob.
+5. Antes de publicar, preencha na Play Console a declaracao de anuncios
+   e tenha uma politica de privacidade.
